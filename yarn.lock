@@ -2586,6 +2586,11 @@ flow-copy-source@^2.0.9:
     kefir "^3.7.3"
     yargs "^15.0.1"
 
+flow-interfaces-chrome@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/flow-interfaces-chrome/-/flow-interfaces-chrome-0.6.0.tgz#f7cb334976cec4d7483e09c7fff9bfc2a5c513dd"
+  integrity sha512-Dl0e8Mql2kQjWJZwvJa6Vc6dtu93P3fhHAJxc8dlMwWXiHeyWoa5hVVzD0IXXJhciwRpbl+ZhIRI5BNhe0xntg==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
