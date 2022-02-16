@@ -40,9 +40,9 @@ function Sidebar(): React.MixedElement {
   const connection = useContext(ConnectionContext);
   const [selected, setSelected] = useSelectedTransaction();
   const [filter] = useFilter();
-  const allTransactions: TransactionType[] =
-    connection?.transactions?.getArray() ?? [];
   const transactions = useMemo(() => {
+    const allTransactions: TransactionType[] =
+      connection?.transactions?.getArray() ?? [];
     if (filter !== '') {
       return allTransactions.filter(tx =>
         tx.modifiedValues.some(
@@ -51,7 +51,8 @@ function Sidebar(): React.MixedElement {
       );
     }
     return allTransactions;
-  }, [filter, allTransactions]);
+  }, [filter, connection?.transactions]);
+
   return (
     <aside style={styles.sidebar}>
       {transactions.map((tx, i) => (

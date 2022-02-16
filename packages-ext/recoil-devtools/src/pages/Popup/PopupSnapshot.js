@@ -10,13 +10,17 @@
 'use strict';
 
 import type {SnapshotType} from '../../types/DevtoolsTypes';
+import type {Node} from 'react';
 
+import React, {useContext, useMemo, useState} from 'react';
+
+import ConnectionContext from './ConnectionContext';
 import Item from './Items/Item';
-
-const ConnectionContext = require('./ConnectionContext');
-const {useSelectedTransaction} = require('./useSelectionHooks');
-const React = require('react');
-const {useContext, useMemo} = require('react');
+import SnapshotSearch from './Snapshot/SnapshotSearch.react';
+import {useSelectedTransaction} from './useSelectionHooks';
+import SnapshotContext from './Snapshot/SnapshotContext';
+import AtomsList from './Snapshot/AtomsList.react';
+import SelectorsList from './Snapshot/SelectorsList.react';
 
 const styles = {
   container: {
@@ -27,7 +31,8 @@ const styles = {
   },
 };
 
-function SnapshotRenderer(): React.Node {
+function SnapshotRenderer(): React$Node {
+  const [searchVal, setSearchVal] = useState('');
   const connection = useContext(ConnectionContext);
   const [txID] = useSelectedTransaction();
   const {snapshot, sortedKeys} = useMemo(() => {
@@ -59,12 +64,13 @@ function SnapshotRenderer(): React.Node {
   });
 
   return (
-    <div style={styles.container}>
-      <h2>Atoms</h2>
-      {atoms.length > 0 ? atoms : 'No atoms to show.'}
-      <h2>Selectors</h2>
-      {selectors.length > 0 ? selectors : 'No selectors to show.'}
-    </div>
+    <SnapshotContext.Provider value={{searchVal, setSearchVal}}>
+      <div style={styles.container}>
+        <SnapshotSearch />
+        <AtomsList />
+        <SelectorsList />
+      </div>
+    </SnapshotContext.Provider>
   );
 }
 

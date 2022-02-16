@@ -51,7 +51,8 @@ const styles = {
   head: {
     display: 'flex',
     fontWeight: 'bold',
-    paddingLeft: 16,
+    fontSize: '24px',
+    paddingLeft: 8,
   },
   title: {
     fontWeight: 'bold',

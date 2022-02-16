@@ -8,8 +8,7 @@
  * @format
  */
 'use strict';
-import type {SetterOrUpdater} from 'recoil';
-import type {RecoilState} from 'recoil';
+import type {SetterOrUpdater, RecoilState} from 'recoil';
 
 import {atom, useRecoilState} from 'recoil';
 
