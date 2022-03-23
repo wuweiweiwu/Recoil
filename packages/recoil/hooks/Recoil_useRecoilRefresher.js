@@ -18,10 +18,13 @@ const {useCallback} = require('react');
 
 function useRecoilRefresher<T>(recoilValue: RecoilValue<T>): () => void {
   const storeRef = useStoreRef();
-  return useCallback(() => {
-    const store = storeRef.current;
-    refreshRecoilValue(store, recoilValue);
-  }, [recoilValue, storeRef]);
+  return useCallback(
+    (shallow?: boolean = false) => {
+      const store = storeRef.current;
+      refreshRecoilValue(store, recoilValue, shallow);
+    },
+    [recoilValue, storeRef],
+  );
 }
 
 module.exports = useRecoilRefresher;

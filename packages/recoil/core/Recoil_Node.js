@@ -65,8 +65,9 @@ export type ReadOnlyNodeOptions<T> = $ReadOnly<{
   invalidate: TreeState => void,
 
   // Clear all internal caches for this node.  Unlike "invalidate()" this clears
-  // the selector cache and clears for all possible dependency values.
-  clearCache?: (Store, TreeState) => void,
+  // the selector cache and clears for all possible dependency values by default.
+  // If shallow is true, only clears the internal caches for this node.
+  clearCache?: (Store, TreeState, shallow?: boolean) => void,
 
   shouldRestoreFromSnapshots: boolean,
 

@@ -76,7 +76,8 @@ function recoilCallback<Args: $ReadOnlyArray<mixed>, Return, ExtraInterface>(
           setRecoilValue(store, node, newValue),
         reset: <T>(node: RecoilState<T>) =>
           setRecoilValue(store, node, DEFAULT_VALUE),
-        refresh: <T>(node: RecoilValue<T>) => refreshRecoilValue(store, node),
+        refresh: <T>(node: RecoilValue<T>, shallow?: boolean = false) =>
+          refreshRecoilValue(store, node, shallow),
         gotoSnapshot: snapshot => gotoSnapshot(store, snapshot),
         transact_UNSTABLE: transaction => atomicUpdater(store)(transaction),
       },

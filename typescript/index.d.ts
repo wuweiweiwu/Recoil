@@ -140,7 +140,7 @@
  export interface CallbackInterface {
   set: <T>(recoilVal: RecoilState<T>, valOrUpdater: ((currVal: T) => T) | T) => void;
   reset: (recoilVal: RecoilState<any>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
-  refresh: (recoilValue: RecoilValue<any>) => void;
+  refresh: (recoilValue: RecoilValue<any>, shallow?:boolean ) => void;
   snapshot: Snapshot;
   gotoSnapshot: (snapshot: Snapshot) => void;
   transact_UNSTABLE: (cb: (i: TransactionInterface_UNSTABLE) => void) => void;

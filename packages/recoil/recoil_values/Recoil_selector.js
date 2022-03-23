@@ -1105,13 +1105,21 @@ function selector<T>(
     state.atomValues.delete(key);
   }
 
-  function clearSelectorCache(store: Store, treeState: TreeState) {
+  function clearSelectorCache(
+    store: Store,
+    treeState: TreeState,
+    shallow?: boolean = false,
+  ) {
     invariant(recoilValue != null, 'Recoil Value can never be null');
-    for (const nodeKey of discoveredDependencyNodeKeys) {
-      const node = getNode(nodeKey);
-      node.clearCache?.(store, treeState);
+
+    if (!shallow) {
+      for (const nodeKey of discoveredDependencyNodeKeys) {
+        const node = getNode(nodeKey);
+        node.clearCache?.(store, treeState);
+      }
+      discoveredDependencyNodeKeys.clear();
     }
-    discoveredDependencyNodeKeys.clear();
+
     invalidateSelector(treeState);
     cache.clear();
     markRecoilValueModified(store, recoilValue);

@@ -348,10 +348,11 @@ function subscribeToRecoilValue<T>(
 function refreshRecoilValue<T>(
   store: Store,
   recoilValue: AbstractRecoilValue<T>,
+  shallow?: boolean = false,
 ): void {
   const {currentTree} = store.getState();
   const node = getNode(recoilValue.key);
-  node.clearCache?.(store, currentTree);
+  node.clearCache?.(store, currentTree, shallow);
 }
 
 module.exports = {
